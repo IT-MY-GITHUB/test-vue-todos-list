@@ -1,0 +1,20 @@
+@use "../vars";
+
+.form-control {
+  background-color: #fff;
+  border: 1px solid transparent;
+  padding: 5px 10px;
+  border-radius: 6px;
+  width: 100%;
+  transition: all 150ms ease-out;
+
+  &::placeholder {
+    color: #404755;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: vars.$accent;
+    box-shadow: 0 0 10px rgba(vars.$accent, 30%);
+  }
+}

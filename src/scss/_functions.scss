@@ -1,0 +1,10 @@
+@use "sass:math";
+
+/**
+ * PX to REM
+ * @param  int $px-rem - пиксели, которые преобразуем в rem
+ * @return float - значение rem
+ */
+@function rem($px-rem) {
+  @return math.div($px-rem, 16px) + rem;
+}

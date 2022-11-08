@@ -1,0 +1,23 @@
+@use "./vars";
+@import "./components/author";
+@import "./components/btn";
+@import "./components/form-control";
+@import "./components/todo";
+@import "../../node_modules/bootstrap/scss/bootstrap-reboot";
+
+body {
+  min-width: 280px;
+  background-color: vars.$body-bg;
+}
+
+::selection {
+  background-color: vars.$accent;
+}
+
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}

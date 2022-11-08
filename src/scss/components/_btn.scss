@@ -1,0 +1,24 @@
+@use "../vars";
+@use "../functions";
+
+.btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 7px;
+  color: vars.$accent;
+  padding: 0;
+  text-transform: uppercase;
+  transition: vars.$transition-base;
+
+  svg {
+    width: functions.rem(26px);
+  }
+
+  &:hover {
+    color: vars.$accent_hover;
+  }
+
+  &--closed {
+    transform: rotate(45deg);
+  }
+}

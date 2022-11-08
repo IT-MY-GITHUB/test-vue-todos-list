@@ -1,0 +1,186 @@
+@use "../vars";
+@use "../functions";
+
+.todo {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  max-height: 540px;
+  min-height: 540px;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 20px;
+  background-color: #252e42;
+  box-shadow: 0 14px 34px rgba(#000, 0.25);
+  padding: 30px;
+  margin-top: 162px;
+  color: #fff;
+  font-family: Montserrat, sans-serif !important;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -41px;
+    transform: rotate(-4.48deg);
+    width: 341px;
+    height: 85px;
+    border-radius: 20px;
+    background-color: #4f5565;
+    z-index: -2;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -25px;
+    transform: rotate(-2.32deg);
+    width: 395px;
+    height: 67px;
+    border-radius: 20px;
+    background-color: #31394d;
+    z-index: -1;
+  }
+
+  &__head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    &-title {
+      font-size: functions.rem(28px);
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+  }
+
+  &__list {
+    overflow-y: auto;
+    padding-top: 10px;
+
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #31394d;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #4f5565;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: vars.$accent;
+      }
+    }
+
+    &-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-flow: row nowrap;
+      padding: 9px 0;
+      cursor: pointer;
+      overflow-x: hidden;
+      user-select: none;
+
+      $this-td-item: &;
+      $td-checkbox-sz: functions.rem(20px);
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: $td_checkbox_sz;
+        height: $td_checkbox_sz;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #4f5565;
+        background-image: url("/checkmark-outline.svg");
+        background-size: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 6px;
+        transition: vars.$transition-base;
+      }
+
+      &-info {
+        padding-left: calc(#{$td_checkbox_sz} + 15px);
+
+        &-title {
+          font-weight: 500;
+          font-size: functions.rem(16px);
+          margin-bottom: 3px;
+          transition: vars.$transition-base;
+        }
+
+        &-description {
+          line-height: 15px;
+          font-size: functions.rem(12px);
+          color: #4f5565;
+          margin-bottom: 0;
+          transition: vars.$transition-base;
+        }
+      }
+
+      &:hover {
+        &::before {
+          background-color: rgba(vars.$accent, 0.2);
+        }
+
+        #{$this_td_item}-info {
+          &-title {
+            color: vars.$accent;
+          }
+        }
+      }
+
+      &_completed {
+        &::before {
+          background-color: vars.$accent;
+          background-size: 12px;
+        }
+
+        #{$this_td_item}-info {
+          &-title {
+            text-decoration-line: line-through;
+            color: #4f5565 !important;
+          }
+        }
+      }
+    }
+  }
+
+  &__form {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .todo {
+    max-width: 100%;
+    min-height: 540px;
+    max-height: 100%;
+    margin-top: 100px;
+
+    &::before {
+      width: 307px;
+      max-width: 85%;
+      height: 85px;
+      top: -41px;
+    }
+
+    &::after {
+      width: 354px;
+      max-width: 95%;
+      height: 67px;
+      top: -25px;
+    }
+  }
+}
